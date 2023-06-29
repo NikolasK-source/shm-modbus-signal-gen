@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-__VERSION__ = "1.0.0"
+__VERSION__ = "1.0.1"
 
 import sys
 import math
@@ -154,11 +154,11 @@ def main():
                                      description="System time based signal generator for stdin-to-modbus-shm",
                                      epilog='f(x = time.time()) = offset + scale * function((x + time-offset) * speed)')
     
-    parser.add_argument('-o', '--offset', type=float, nargs=1,default=0, help="function offset, ignored if function is toggle")
-    parser.add_argument('-s', '--scale', type=float, nargs=1,default=1, help="function scale, ignored if function is toggle")
-    parser.add_argument('-v', '--speed', type=float, nargs=1,default=1, help="function speed")
-    parser.add_argument('-d', '--delay', type=float, nargs=1, help="delay between calculations", default=0.1)
-    parser.add_argument('-e', '--endian', type=str, nargs=1, help="data type/endianess string (see stdin-to-modbus-shm)", default='')
+    parser.add_argument('-o', '--offset', type=float, default=0, help="function offset, ignored if function is toggle")
+    parser.add_argument('-s', '--scale', type=float, default=1, help="function scale, ignored if function is toggle")
+    parser.add_argument('-v', '--speed', type=float, default=1, help="function speed")
+    parser.add_argument('-d', '--delay', type=float, help="delay between calculations", default=0.1)
+    parser.add_argument('-e', '--endian', type=str, help="data type/endianess string (see stdin-to-modbus-shm)", default='')
     parser.add_argument('-t', '--time_offset', type=float, nargs=1, default=0, help="system time offset in seconds")
     parser.add_argument('-p', '--print', action='store_true', default=False, help="print function and exit")
     parser.add_argument('--version', action='version', version=__VERSION__)
@@ -186,13 +186,13 @@ def main():
         print('no registers provided', file=sys.stderr)
         exit(os.EX_USAGE)
 
-    regtype = f'{args.register_type[0]}'
+    regtype = args.register_type
     offset = args.offset
     scale = args.scale
     speed = args.speed
     delay = args.delay
     if args.endian != '':
-        endian = f':{args.endian[0]}'
+        endian = f':{args.endian}'
     else:
         endian = ''
     time_offset = args.time_offset
