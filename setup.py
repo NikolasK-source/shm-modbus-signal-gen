@@ -3,7 +3,7 @@ import sys,os
 
 setup(
     name = 'signalgen',
-    version = '1.0.1',
+    version = '1.0.2',
     description = 'System time based signal generator for stdin-to-modbus-shm',
     license='MIT',
     author = 'Nikolas Koesling',

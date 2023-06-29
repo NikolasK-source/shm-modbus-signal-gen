@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-__VERSION__ = "1.0.1"
+__VERSION__ = "1.0.2"
 
 import sys
 import math
@@ -249,7 +249,8 @@ def main():
         if f != f_old:
             f_old = f
             for reg in regs:
-                print(f'{regtype}:0x{reg:x}:{f}{endian}')
+                print(f'{regtype}:0x{reg:x}:{f}{endian}', flush=(reg == regs[-1]))
+            
 
         time.sleep(delay)
     # end while
