@@ -15,7 +15,7 @@ The value is generated at a configurable interval and can be written to multiple
 
 ### Example
 The following writes a sine signal as 32 bit float to ```0x42@AO```.
-The value is calculated evry 0.1 seconds.
+The value is calculated every 0.1 seconds.
 ```
 shm-modbus-signal-gen -d 0.1 -e f32l sin ao 0x42 | stdin-to-modbus-shm
 ```
